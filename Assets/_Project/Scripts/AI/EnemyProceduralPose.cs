@@ -50,7 +50,7 @@ namespace RealLoserStudio.Tactical.AI
                 // shipped rigs use names such as UpperArmL and UpperLegR (no separators),
                 // which the earlier matcher did not recognize.
                 string n = NormalizeBoneName(t.name);
-                BoneRole role;
+                BoneRole role = default; // Fixed: Assigned default value here to prevent unassigned error
                 bool matched = false;
 
                 if (n == "head" || n.EndsWith("head")) { role = BoneRole.Head; matched = true; }
