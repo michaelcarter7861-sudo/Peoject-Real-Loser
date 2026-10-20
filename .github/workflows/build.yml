@@ -47,9 +47,40 @@ jobs:
           restore-keys: |
             Library-Unity2022.3.40f1-Android-
 
+      # NAYA STEP: Yeh Docker ke andar hi Email/Password se Free .ulf file generate karega
+      - name: Generate Personal Unity License (.ulf) Automatically
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        run: |
+          docker run --rm \
+            -e UNITY_EMAIL="$UNITY_EMAIL" \
+            -e UNITY_PASSWORD="$UNITY_PASSWORD" \
+            -v "$PWD:/license_out" \
+            unityci/editor:ubuntu-2022.3.40f1-android-3 \
+            /bin/bash -c "
+              /opt/unity/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client --acquire-ulf --username \"\$UNITY_EMAIL\" --password \"\$UNITY_PASSWORD\"
+              cp /root/.local/share/unity3d/Unity/Unity_lic.ulf /license_out/Unity_lic.ulf || cp /root/.config/unity3d/Unity/Unity_lic.ulf /license_out/Unity_lic.ulf
+            "
+          echo "UNITY_LICENSE<<EOF" >> $GITHUB_ENV
+          cat Unity_lic.ulf >> $GITHUB_ENV
+          echo "" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+          rm -f Unity_lic.ulf
+
+      # BONUS: Generated .ulf file ko download karne ke liye upload bhi kar dega
+      - name: Upload Generated .ulf License (For Future Use)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Generated_Unity_License_ULF
+          path: Unity_lic.ulf
+          if-no-files-found: ignore
+
       - name: Build Unity Android ARM64 IL2CPP APK
         uses: game-ci/unity-builder@v4
         env:
+          UNITY_LICENSE: ${{ env.UNITY_LICENSE }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
