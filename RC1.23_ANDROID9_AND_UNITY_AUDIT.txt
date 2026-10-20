@@ -1,0 +1,11 @@
+[PASS] All MonoBehaviour classes match their .cs filenames (39 scripts)
+[PASS] All 12 scene YAML MonoBehaviour script GUIDs resolve to matching C# classes
+[PASS] 100% .meta file coverage across all Assets folders and files — missing=0
+[PASS] CS1061 fixed: RuntimeMissionSpawner calls EvaluateTrapTick and wires trap damage
+[PASS] CS1729 fixed: RealLoserProjectBuilder uses SplashScreenLogo.Create(float, Sprite)
+[PASS] Packages/manifest.json has no broken gltfast dependency
+[PASS] Android 9 (API 28) SDK & Dual-ABI (ARMv7 + ARM64) configured
+[PASS] Android 9 OpenGL ES 3.0 primary graphics & Swappy disabled
+[PASS] Shader loader checks GraphicsSettings.currentRenderPipeline before URP shader
+[PASS] UI font loader supports Unity 2022.3 LegacyRuntime.ttf with Arial.ttf fallback
+OVERALL RC1.23 GATE: 10/10 checks passed

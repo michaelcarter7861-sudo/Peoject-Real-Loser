@@ -1,0 +1,77 @@
+PROJECT REAL LOSER RC1.20 STATIC VALIDATION
+Overall: PASS
+
+### validate_consolidated_release.py (exit 0)
+[PASS] M01 objectives and extraction present
+[PASS] M02 objectives and extraction present
+[PASS] M03 objectives and extraction present
+[PASS] M04 objectives and extraction present
+[PASS] M05 objectives and extraction present
+[PASS] M06 objectives and extraction present
+[PASS] M07 objectives and extraction present
+[PASS] M08 objectives and extraction present
+[PASS] M09 objectives and extraction present
+[PASS] M10 objectives and extraction present
+[PASS] GLB loader reads TEXCOORD_0 and builds planar fallback UVs
+[PASS] GLB loader preserves all primitives as submeshes
+[PASS] GLB loader creates SkinnedMeshRenderer and bone weights
+[PASS] GLB loader assigns procedural tiled material textures
+[PASS] GLB collider bounds account for renderers in local space
+[PASS] Android data loading uses Resources and avoids blocking UnityWebRequest loops
+[PASS] Repeated GLB instantiation uses cached templates
+[PASS] Android runtime Resources payloads included (124 .bytes files)
+[PASS] M03 relay C4 and alternate fuel path both represented
+[PASS] M04 escort actor has follow, health and mission-failure handling
+[PASS] Enemy fire can damage escort when he crosses line of fire
+[PASS] Enemy perception enforces line-of-sight raycasts
+[PASS] Enemy combat memory tracks last known player position
+[PASS] Enemy sight reacquisition does not reset combat state timer every frame
+[PASS] M08 truck controller consumes mobile joystick and keyboard input
+[PASS] M05 vehicle C4 and blast effects implemented
+[PASS] M06 safe-distance detonation gate implemented
+[PASS] M09 sniper neutralization and timed uplink gate implemented
+[PASS] M06 technician charge-disarm window and replant rollback implemented
+[PASS] C# delimiter sanity across 32 source files
+[PASS] GLB bank parses (80/80)
+[PASS] GLB bank contains multiple primitives (206 primitives)
+[PASS] Skinned primitive records found (72)
+[PASS] Embedded textured GLBs are accurately reported (0)
+GLB facts: 80 files, 206 primitives, 72 skinned primitive records, 0 primitives with authored UVs, 0 files with embedded texture/image records.
+[PASS] 34 consolidated release static checks
+[LIMIT] These checks do not compile Unity C# or prove Play Mode/Android behavior.
+
+### validate_consolidated_mission_mechanics.py (exit 0)
+[PASS] M01: objectives/extraction data present
+[PASS] M02: objectives/extraction data present
+[PASS] M03: objectives/extraction data present
+[PASS] M04: objectives/extraction data present
+[PASS] M05: objectives/extraction data present
+[PASS] M06: objectives/extraction data present
+[PASS] M07: objectives/extraction data present
+[PASS] M08: objectives/extraction data present
+[PASS] M09: objectives/extraction data present
+[PASS] M10: objectives/extraction data present
+[PASS] M03 relay and alternate fuel target ids are declared
+[PASS] M05 all declared C4 vehicle targets exist as structures
+[PASS] M04 hostage spawn and follow runtime source exists
+[PASS] M06 three manifold charge targets and safety distance exist
+[PASS] M05 plant/detonate state and visual target destruction source exists
+[PASS] M09 sniper kill gate and timed uplink source exists
+[PASS] M08 truck/checkpoint/delivery data and objective steps exist
+[PASS] 17 consolidated mission mechanics contracts
+[NOTE] Static contracts do not prove Unity compilation, scene object availability, navigation, or Android runtime behavior.
+
+### validate_mission_objective_runtime.py (exit 0)
+[PASS] M01: 1 coordinate-bearing objective target(s), extraction configured
+[PASS] M02: 1 coordinate-bearing objective target(s), extraction configured
+[PASS] M03: 2 coordinate-bearing objective target(s), extraction configured
+[PASS] M04: 2 coordinate-bearing objective target(s), extraction configured
+[PASS] M05: 2 coordinate-bearing objective target(s), extraction configured
+[PASS] M06: 3 coordinate-bearing objective target(s), extraction configured
+[PASS] M07: 1 coordinate-bearing objective target(s), extraction configured
+[PASS] M08: 2 coordinate-bearing objective target(s), extraction configured
+[PASS] M09: 1 coordinate-bearing objective target(s), extraction configured
+[PASS] M10: 2 coordinate-bearing objective target(s), extraction configured
+[PASS] mission objective static integration checks
+[PASS] M03 alternate route, M06 three-charge safety gate, M08 checkpoint coordinates, M09 five-sniper/hack contract
+[NOTE] Static checks do not prove Unity compilation or runtime behavior.

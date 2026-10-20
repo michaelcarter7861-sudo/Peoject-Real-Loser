@@ -1,0 +1,20 @@
+[PASS] Build Settings scenes exist and GUIDs match (12 entries)
+[PASS] Boot and MainMenu scenes are in build order
+[PASS] All 39 C# scripts have stable MonoImporter metadata
+[PASS] C# script GUIDs are unique
+[PASS] Core gameplay script set present
+[PASS] Ten mission payloads bundled in Resources
+[PASS] Runtime audio payload bank present
+[PASS] Runtime GLB payload bank present
+[PASS] Campaign JSON and runtime payloads parse for all ten missions
+[PASS] Enemy AI retries noise subscription when scene initialization order changes
+[PASS] Stealth singleton safely clears itself and guards duplicates
+[PASS] Pause settings sensitivity slider uses correct normalized mapping
+[PASS] Pause overlay restores prior time scale on resume
+[PASS] Audio and graphics settings persist across scenes
+[PASS] Boot applies saved audio and graphics settings
+[PASS] Player death has retry/menu overlay wired to health event
+[PASS] Mission spawner attaches death screen to spawned player
+[PASS] C# delimiter sanity (39 files)
+OVERALL: 18/18 static checks passed
+LIMIT: This script cannot compile Unity C#, import GLB assets, execute Play Mode, or validate Android hardware behavior.

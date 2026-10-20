@@ -1,0 +1,17 @@
+PROJECT REAL LOSER RC1.21 — OVERALL STATIC AUDIT
+
+Checks run:
+- validate_consolidated_release.py: 34 PASS
+- validate_consolidated_mission_mechanics.py: 17 PASS
+- validate_mission_objective_runtime.py: PASS
+- validate_overall_release.py: 14/14 PASS
+- Unity build-scene path/GUID correspondence: 12/12 PASS
+- C# MonoImporter metadata: 33/33 present, GUIDs unique
+
+Critical outstanding art/import fact:
+- 80 GLB payloads parse structurally; 206 primitives, 72 skinned primitive records.
+- 0 primitives have authored TEXCOORD_0 UVs.
+- 0 GLB files have embedded texture/image records.
+- 160 source .glb files under Assets lack committed importer-specific .meta files; glTFast import must be checked in Unity Editor.
+
+These are static checks only. No Unity C# compile, Play Mode test, Android APK build, or physical-device test is claimed.
