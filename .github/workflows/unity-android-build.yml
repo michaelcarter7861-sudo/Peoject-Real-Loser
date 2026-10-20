@@ -23,6 +23,8 @@ jobs:
           python-version: '3.11'
 
       - name: Run Phase 0 Anti-Cheat Validation Suite v3 (All 10 Missions + Assets)
+        env:
+          PYTHONDONTWRITEBYTECODE: 1
         run: |
           python3 validate_levels_v3.py M01.json M02.json M03.json M04.json M05.json M06.json M07.json M08.json M09.json M10.json
           python3 validate_characters.py Assets/_Project/Art/Characters
@@ -33,6 +35,9 @@ jobs:
           python3 validate_consolidated_mission_mechanics.py
           python3 validate_overall_release.py
           python3 validate_android9_and_unity_compile_readiness.py
+
+      - name: Cleanup Python cache
+        run: find . -name "__pycache__" -type d -prune -exec rm -rf {} +
 
       - name: Cache Unity Library
         uses: actions/cache@v4
@@ -54,6 +59,7 @@ jobs:
           buildMethod: RealLoser.Editor.RealLoserProjectBuilder.BuildAndroidAPK
           buildsPath: Builds
           buildName: ProjectRealLoser_v1.0
+          versioning: None
 
       - name: Upload ProjectRealLoser_v1.0_Unity.apk Artifact
         uses: actions/upload-artifact@v4
