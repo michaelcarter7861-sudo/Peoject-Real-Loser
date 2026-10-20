@@ -47,7 +47,7 @@ jobs:
           restore-keys: |
             Library-Unity2022.3.40f1-Android-
 
-      # NAYA STEP: Yeh Docker ke andar hi Email/Password se Free .ulf file generate karega
+      # FIXED STEP: Sahi flag (--activate-ulf) ke sath .ulf file generate karega
       - name: Generate Personal Unity License (.ulf) Automatically
         env:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
@@ -58,17 +58,19 @@ jobs:
             -e UNITY_PASSWORD="$UNITY_PASSWORD" \
             -v "$PWD:/license_out" \
             unityci/editor:ubuntu-2022.3.40f1-android-3 \
-            /bin/bash -c "
-              /opt/unity/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client --acquire-ulf --username \"\$UNITY_EMAIL\" --password \"\$UNITY_PASSWORD\"
-              cp /root/.local/share/unity3d/Unity/Unity_lic.ulf /license_out/Unity_lic.ulf || cp /root/.config/unity3d/Unity/Unity_lic.ulf /license_out/Unity_lic.ulf
-            "
+            /bin/bash -c '
+              /opt/unity/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client --activate-ulf --username "$UNITY_EMAIL" --password "$UNITY_PASSWORD" || true
+              /opt/unity/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client --activate-all --include-personal --username "$UNITY_EMAIL" --password "$UNITY_PASSWORD" || true
+              ULF_PATH=$(find / -name "Unity_lic.ulf" 2>/dev/null | head -n 1)
+              echo "Found ULF at: $ULF_PATH"
+              cp "$ULF_PATH" /license_out/Unity_lic.ulf
+            '
           echo "UNITY_LICENSE<<EOF" >> $GITHUB_ENV
           cat Unity_lic.ulf >> $GITHUB_ENV
           echo "" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
-          rm -f Unity_lic.ulf
 
-      # BONUS: Generated .ulf file ko download karne ke liye upload bhi kar dega
+      # BONUS: Generated .ulf file ko download karne ke liye Artifact mein daal dega
       - name: Upload Generated .ulf License (For Future Use)
         if: always()
         uses: actions/upload-artifact@v4
